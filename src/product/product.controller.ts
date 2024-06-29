@@ -13,13 +13,19 @@ export class ProductController {
         const product = await this.productService.createProduct(createProductDTO)
 
         return res.status(HttpStatus.OK).json({
-            message: 'Vrg.. todo salió bien.',
+            message: 'Product Created Succesfully',
             product: product
         });
     }
 
-    @Get()
-    getProduct(){
-
+    @Get('/')
+    async getProducts(@Res() res){
+        const products = await this.productService.getProducts();
+        return res.status(HttpStatus.OK).json({
+            products
+        })
     }
+
+    
+
 }
